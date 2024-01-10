@@ -4,8 +4,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from sqlalchemy import create_engine
 
-import src.config as config
-from src.models import Base
+import config as config
+from models import Base
 
 
 engine = create_async_engine(
@@ -29,8 +29,7 @@ class LazyDbInit:
             engine = create_engine(f'postgresql://'
                                          f'{config.DB_USER}:'
                                          f'{config.DB_PASS}@'
-                                         f'{config.DB_HOST if config.DEBUG else "db"}:'
-                                         f'{config.DB_PORT}/'
+                                         f'{config.DB_HOST if config.DEBUG else "db"}/'
                                          f'{config.DB_NAME}')
 
             Base.metadata.create_all(bind=engine)
